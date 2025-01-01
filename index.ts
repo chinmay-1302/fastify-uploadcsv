@@ -12,6 +12,11 @@ const server = fastify({
 
 server.register(multipart);
 
+// ensure uploads directory exists
+if (!fs.existsSync("./uploads")) {
+  fs.mkdirSync("./uploads");
+}
+
 // Create home route
 server.get("/", async function handler(request, reply) {
   return { test: "some data is here" };
